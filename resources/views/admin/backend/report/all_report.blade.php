@@ -1,5 +1,5 @@
-@extends('admin.admin_dashboard')
-@section('admin') 
+@extends('client.client_dashboard')
+@section('client')
 
 <div class="page-content">
     <div class="container-fluid">
@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0 font-size-18">Admin All Report</h4>
+                    <h4 class="mb-sm-0 font-size-18">Client All Report</h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
@@ -34,7 +34,7 @@
             
 <div class="col-sm-4">
     <div class="card">
-    <form id="myForm" action="{{ route('admin.search.bydate') }}" method="post" enctype="multipart/form-data">
+    <form id="myForm" action="{{ route('client.search.bydate') }}" method="post" enctype="multipart/form-data">
         @csrf
         
     <div class="row">
@@ -59,7 +59,7 @@
 
 <div class="col-sm-4">
     <div class="card">
-    <form id="myForm" action="{{ route('admin.search.bymonth') }}" method="post" enctype="multipart/form-data">
+    <form id="myForm" action="{{ route('client.search.bymonth') }}" method="post" enctype="multipart/form-data">
         @csrf
         
     <div class="row">
@@ -111,7 +111,7 @@
 
 <div class="col-sm-4">
     <div class="card">
-    <form id="myForm" action="{{ route('admin.search.byyear') }}" method="post" enctype="multipart/form-data">
+    <form id="myForm" action="{{ route('client.search.byyear') }}" method="post" enctype="multipart/form-data">
         @csrf
         
     <div class="row">

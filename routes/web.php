@@ -15,6 +15,8 @@ use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Admin\ManageOrderController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Frontend\ReviewController;
+use App\Http\Controllers\Frontend\FilterController;
+use App\Http\Controllers\Admin\RoleController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -160,6 +162,21 @@ Route::middleware('admin')->group(function () {
         Route::get('/reviewchangeStatus', 'ReviewChangeStatus'); 
         
     });
+
+    Route::controller(RoleController::class)->group(function(){
+        Route::get('/all/permission', 'AllPermission')->name('all.permission');
+        Route::get('/add/permission', 'AddPermission')->name('add.permission');
+        Route::post('/store/permission', 'StorePermission')->name('permission.store');
+        Route::get('/edit/permission/{id}', 'EditPermission')->name('edit.permission');
+        Route::post('/update/permission', 'UpdatePermission')->name('permission.update');
+        Route::get('/delete/permission/{id}', 'DeletePermission')->name('delete.permission');
+
+        Route::get('/import/permission', 'ImportPermission')->name('import.permission');
+        Route::get('/export', 'Export')->name('export');
+        Route::post('/import', 'Import')->name('import');
+        
+        
+    });
  
     
 }); // End Admin Middleware
@@ -246,10 +263,17 @@ Route::controller(CartController::class)->group(function(){
 
 Route::controller(OrderController::class)->group(function(){
     Route::post('/cash_order', 'CashOrder')->name('cash_order');
+    Route::post('/stripe_order', 'StripeOrder')->name('stripe_order');
    
 });
 
 Route::controller(ReviewController::class)->group(function(){
     Route::post('/store/review', 'StoreReview')->name('store.review');  
+    
+});
+
+Route::controller(FilterController::class)->group(function(){
+    Route::get('/list/restaurant', 'ListRestaurant')->name('list.restaurant');  
+    Route::get('/filter/products', 'FilterProducts')->name('filter.products');
     
 });

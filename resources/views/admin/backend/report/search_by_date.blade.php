@@ -1,5 +1,5 @@
-@extends('admin.admin_dashboard')
-@section('admin') 
+@extends('client.client_dashboard')
+@section('client')
 
 <div class="page-content">
     <div class="container-fluid">
@@ -42,20 +42,24 @@
 
 
             <tbody>
-           @foreach ($orderDate as $key=> $item)  
+                @php $key = 1; @endphp
+           @foreach ($orderItemGroupData as $orderGroup) 
+           @foreach ($orderGroup as $item) 
             <tr>
                 <td>{{ $key+1 }}</td>
-                <td>{{ $item->order_date }}</td>
-                <td>{{ $item->invoice_no }}</td>
-                <td>{{ $item->amount }}</td>
-                <td>{{ $item->payment_method }}</td>
-                <td><span class="badge bg-primary">{{ $item->status }}</span></td>                
+                <td>{{ $item->order->order_date }}</td>
+                <td>{{ $item->order->invoice_no }}</td>
+                <td>{{ $item->order->amount }}</td>
+                <td>{{ $item->order->payment_method }}</td>
+                <td><span class="badge bg-primary">{{ $item->order->status }}</span></td>                
                
                 
-        <td><a href="{{ route('admin.order.details',$item->id) }}" class="btn btn-info waves-effect waves-light"> <i class="fas fa-eye"></i> </a> 
+        <td><a href="{{ route('client.order.details',$item->order_id) }}" class="btn btn-info waves-effect waves-light"> <i class="fas fa-eye"></i> </a> 
 
                 </td> 
             </tr>
+            @break
+            @endforeach 
             @endforeach    
             
             </tbody>
